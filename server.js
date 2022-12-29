@@ -36,7 +36,7 @@ require('./routes')(app);
 
 // catch 404
 app.use((req, res, next) => {
-    // log.error(`Error 404 on ${req.url}.`);
+    console.error(`Error 404 on ${req.url}.`);
     res.status(404).send({ status: 404, error: 'Not found' });
 });
 
@@ -44,7 +44,7 @@ app.use((req, res, next) => {
 app.use((err, req, res, next) => {
     const status = err.status || 500;
     const msg = err.error || err.message;
-    // log.error(`Error ${status} (${msg}) on ${req.method} ${req.url} with payload ${req.body}.`);
+    console.error(`Error ${status} (${msg}) on ${req.method} ${req.url} with payload ${req.body}.`);
     res.status(status).send({ status, error: msg });
 });
 
