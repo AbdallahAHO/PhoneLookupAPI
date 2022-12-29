@@ -11,9 +11,10 @@
         "cookie-parser": "1.4.5",
         "cors": "2.8.5",
         "express": "4.17.1",
-        "morgan": "1.10.0",
-        "multer": "1.4.2",
+        "express-basic-auth": " 1.2.1",
         "express-rate-limit": "6.7.0",
-        "express-basic-auth": " 1.2.1"
+        "google-libphonenumber": "^3.2.31",
+        "morgan": "1.10.0",
+        "multer": "1.4.2"
     }
 }

@@ -1,3 +1,39 @@
+const {PhoneNumberUtil, PhoneNumberFormat} = require('google-libphonenumber');
+
+const phoneUtil = PhoneNumberUtil.getInstance();
+
+function validatePhoneNumber(phoneNumber) {
+  let result = {};
+
+  try {
+    const parsedNumber = phoneUtil.parse(`+${phoneNumber}`);
+
+    const isValidNumber = phoneUtil.isValidNumber(parsedNumber);
+    const getNationalNumber = parsedNumber.getNationalNumber()
+    const regionCode = phoneUtil.getRegionCodeForNumber(parsedNumber) || ''
+
+    if (!getNationalNumber) {
+      throw new Error('<Error message>');
+    }
+
+    result = {
+      number: getNationalNumber.toString(),
+      is_valid_number: isValidNumber,
+      local_format: phoneUtil.format(parsedNumber, PhoneNumberFormat.NATIONAL),
+      international_format: phoneUtil.format(parsedNumber, PhoneNumberFormat.INTERNATIONAL),
+      country_name:  regionCode,
+      country_code: regionCode,
+      country_prefix: phoneUtil.getCountryCodeForRegion(regionCode).toString(),
+    };
+  } catch (error) {
+    console.log(error)
+    throw new Error('Something Wrong happened while parsing the phone number');
+  }
+
+  return result;
+}
+
+
 module.exports = {
   /**
   * getLookup
@@ -5,30 +41,16 @@ module.exports = {
   * @param {string} options.phoneNumber - phone number to lookup
   */
   getLookup: async (options) => {
-    // Implement your business logic here...
-    //
-    // Return all 2xx and 4xx as follows:
-    //
-    // return {
-    //   status: 'statusCode',
-    //   data: 'response'
-    // }
+    if (!options.phoneNumber) {
+      return {
+        status: '400',
+        data: {
+          error: 'The phone number is invalid'
+        }
+      }
+    }
 
-    // If an error happens during your business logic implementation,
-    // you can throw it as follows:
-    //
-    // throw new Error('<Error message>'); // this will result in a 500
-
-    const data = {
-        "country_code": "<string>",
-        "country_name": "<string>",
-        "country_prefix": "<string>",
-        "international_format": "<string>",
-        "is_valid_number": "<boolean>",
-        "local_format": "<string>",
-        "number": "<string>",
-      };
-
+    const data = validatePhoneNumber(options.phoneNumber);
     const status = '200';
 
     return {
