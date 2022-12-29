@@ -32,6 +32,12 @@ paths:
                         application/json:
                             schema:
                                 $ref: "#/components/schemas/ValidationError"
+                429:
+                    description: Too Many Requests
+                    content:
+                        application/json:
+                            schema:
+                                $ref: "#/components/schemas/TooManyRequests"
                 500:
                     description: Internal server error.
                     content:
@@ -97,3 +103,11 @@ components:
                     type: string
                     description: The error message an internal server error
                     example: Internal server error, Please try again
+        TooManyRequests:
+            type: object
+            properties:
+                error:
+                    type: string
+                    description: The error message on hitting a rate limit
+                    example: Too many requests, please try again later
+
