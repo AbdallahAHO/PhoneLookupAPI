@@ -1,0 +1,99 @@
+openapi: 3.0.2
+info:
+    version: 1.0.0
+    title: Phone Lookup API
+    description: A simple API for looking up information about phone numbers.
+    contact:
+        name: API Support
+        email: support@example.com
+servers:
+    - url: https://api.example.com/v1
+    - url: http://localhost:3000
+paths:
+    /phone-number/lookup:
+        get:
+            summary: Look up information about a phone number
+            parameters:
+                - name: phoneNumber
+                  in: query
+                  required: true
+                  schema:
+                      $ref: "#/components/schemas/QueryParam"
+            responses:
+                200:
+                    description: The phone number is valid.
+                    content:
+                        application/json:
+                            schema:
+                                $ref: "#/components/schemas/PhoneNumber"
+                400:
+                    description: The phone number is invalid.
+                    content:
+                        application/json:
+                            schema:
+                                $ref: "#/components/schemas/ValidationError"
+                500:
+                    description: Internal server error.
+                    content:
+                        application/json:
+                            schema:
+                                $ref: "#/components/schemas/ServerError"
+x-rate-limit:
+    limit: 10
+    window: 60
+security:
+        - BasicAuth : [] 
+components:
+    securitySchemes:
+        BasicAuth:
+            type: http
+            scheme: basic
+    schemas:
+        QueryParam:
+            type: string
+            example: +1-541-754-3010
+        PhoneNumber:
+            type: object
+            properties:
+                number:
+                    type: string
+                    description: The phone number.
+                    example: 14154582468
+                is_valid_number:
+                    type: boolean
+                    description: A flag indicating whether the phone number is valid.
+                    example: true
+                local_format:
+                    type: string
+                    description: The phone number in local format.
+                    example: 4154582468
+                international_format:
+                    type: string
+                    description: The phone number in international format.
+                    example: +14154582468
+                country_name:
+                    type: string
+                    description: The name of the country where the phone number is registered.
+                    example: United States of America
+                country_code:
+                    type: string
+                    description: The ISO 3166-1 alpha-2 code of the country where the phone number is registered.
+                    example: US
+                country_prefix:
+                    type: string
+                    description: The prefix for the country where the phone number is registered.
+                    example: +1
+        ValidationError:
+            type: object
+            properties:
+                error:
+                    type: string
+                    description: The error message explaining why the phone number is invalid.
+                    example: Invalid country code
+        ServerError:
+            type: object
+            properties:
+                error:
+                    type: string
+                    description: The error message an internal server error
+                    example: Internal server error, Please try again

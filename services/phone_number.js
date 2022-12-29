@@ -1,11 +1,10 @@
 module.exports = {
   /**
-  * 
-  * @param options.phoneNumber  
-
+  * getLookup
+  * @param {object} options - containing the following properties:
+  * @param {string} options.phoneNumber - phone number to lookup
   */
   getLookup: async (options) => {
-
     // Implement your business logic here...
     //
     // Return all 2xx and 4xx as follows:
@@ -20,7 +19,7 @@ module.exports = {
     //
     // throw new Error('<Error message>'); // this will result in a 500
 
-    var data = {
+    const data = {
         "country_code": "<string>",
         "country_name": "<string>",
         "country_prefix": "<string>",
@@ -28,12 +27,13 @@ module.exports = {
         "is_valid_number": "<boolean>",
         "local_format": "<string>",
         "number": "<string>",
-      },
-      status = '200';
+      };
+
+    const status = '200';
 
     return {
       status: status,
       data: data
-    };  
+    };
   },
 };
