@@ -89,7 +89,7 @@
       });
 
       const debouncedLookupPhoneNumber = _.debounce((phoneNumber) => {
-        umami.trackEvent('Phone lookup', { type: 'signup', phoneNumber: phoneNumber }, '/home', '94db1cb1-74f4-4a40-ad6c-962362670409');
+        umami.trackEvent('Phone lookup', { phoneNumber: phoneNumber }, '/home', '70b0b489-6eff-4a86-853c-e322cd8b222f');
 
         const xhr = new XMLHttpRequest();
         xhr.open(
