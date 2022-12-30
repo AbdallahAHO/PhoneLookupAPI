@@ -1,10 +1,10 @@
 {
 	"info": {
-		"_postman_id": "1296635f-931e-4bf8-a917-c5add29ad8f8",
+		"_postman_id": "b9c54fdf-bfe4-4ed0-83f8-56c5f89e0d77",
 		"name": "Phone Lookup API",
 		"description": "A simple API for looking up information about phone numbers.\n\nContact Support:\n Name: API Support\n Email: support@example.com",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_uid": "23721944-1296635f-931e-4bf8-a917-c5add29ad8f8"
+		"_uid": "23721944-b9c54fdf-bfe4-4ed0-83f8-56c5f89e0d77"
 	},
 	"item": [
 		{
@@ -13,7 +13,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "8b28dbd3-6741-4547-bdff-15ea9bd48ece",
+						"id": "f5e076ef-29a0-4f36-b460-4022ea411f18",
 						"exec": [
 							""
 						],
@@ -21,7 +21,7 @@
 					}
 				}
 			],
-			"id": "f719041f-5e84-4a6d-b19e-3a5e35803c47",
+			"id": "d7f531a6-cbb4-4b53-842b-a45fdc0341c3",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
 			},
@@ -54,7 +54,7 @@
 			},
 			"response": [
 				{
-					"id": "9ee8f04c-929e-403c-825a-d7c6dd9d183e",
+					"id": "ba589604-8876-48d2-9999-2fbe243d8be1",
 					"name": "200 - The phone number is valid",
 					"originalRequest": {
 						"method": "GET",
@@ -66,21 +66,19 @@
 							}
 						],
 						"url": {
-							"raw": "https://numcheck.aaho.cc/phone-number/lookup?phoneNumber=4917635767006",
-							"protocol": "https",
+							"raw": "{{baseUrl}}/v1/phone-number/lookup?phoneNumber=+4917635767006",
 							"host": [
-								"numcheck",
-								"aaho",
-								"cc"
+								"{{baseUrl}}"
 							],
 							"path": [
+								"v1",
 								"phone-number",
 								"lookup"
 							],
 							"query": [
 								{
 									"key": "phoneNumber",
-									"value": "4917635767006"
+									"value": "+4917635767006"
 								}
 							]
 						}
@@ -98,7 +96,7 @@
 					"body": "{\n    \"number\": \"17635767006\",\n    \"is_valid_number\": true,\n    \"local_format\": \"0176 35767006\",\n    \"international_format\": \"+49 176 35767006\",\n    \"country_name\": \"Germany\",\n    \"country_code\": \"DE\",\n    \"country_prefix\": \"49\"\n}"
 				},
 				{
-					"id": "50d72fa8-abfc-4e87-b95a-5f4c0a073949",
+					"id": "d410ef4f-c4ba-4e51-a734-419219333a09",
 					"name": "400 - The phone number is invalid",
 					"originalRequest": {
 						"method": "GET",
@@ -110,21 +108,19 @@
 							}
 						],
 						"url": {
-							"raw": "https://numcheck.aaho.cc/phone-number/lookup?phoneNumber=<string>",
-							"protocol": "https",
+							"raw": "{{baseUrl}}/v1/phone-number/lookup?phoneNumber=+491763asd5767006",
 							"host": [
-								"numcheck",
-								"aaho",
-								"cc"
+								"{{baseUrl}}"
 							],
 							"path": [
+								"v1",
 								"phone-number",
 								"lookup"
 							],
 							"query": [
 								{
 									"key": "phoneNumber",
-									"value": "<string>"
+									"value": "+491763asd5767006"
 								}
 							]
 						}
@@ -142,7 +138,7 @@
 					"body": "{\n    \"error\": \"The phone number is invalid\"\n}"
 				},
 				{
-					"id": "e1f006e5-5586-46c6-80c9-ea04da5791bd",
+					"id": "c9b29378-7843-47b4-831e-23ce4ed58be5",
 					"name": "429 - Too Many Requests",
 					"originalRequest": {
 						"method": "GET",
@@ -154,21 +150,19 @@
 							}
 						],
 						"url": {
-							"raw": "https://numcheck.aaho.cc/phone-number/lookup?phoneNumber=<string>",
-							"protocol": "https",
+							"raw": "{{baseUrl}}/v1/phone-number/lookup?phoneNumber=+123456789",
 							"host": [
-								"numcheck",
-								"aaho",
-								"cc"
+								"{{baseUrl}}"
 							],
 							"path": [
+								"v1",
 								"phone-number",
 								"lookup"
 							],
 							"query": [
 								{
 									"key": "phoneNumber",
-									"value": "<string>"
+									"value": "+123456789"
 								}
 							]
 						}
@@ -186,7 +180,7 @@
 					"body": "{\n    \"error\": \"Too many requests, please try again later\"\n}"
 				},
 				{
-					"id": "66b1f6b6-fbe9-432a-b49f-34421afa4659",
+					"id": "28625297-979b-4f25-95c7-add9c4395707",
 					"name": "500 - Internal server error",
 					"originalRequest": {
 						"method": "GET",
@@ -198,7 +192,7 @@
 							}
 						],
 						"url": {
-							"raw": "https://numcheck.aaho.cc/phone-number/lookup?phoneNumber=<string>",
+							"raw": "https://numcheck.aaho.cc/phone-number/lookup?phoneNumber=servererror",
 							"protocol": "https",
 							"host": [
 								"numcheck",
@@ -212,7 +206,7 @@
 							"query": [
 								{
 									"key": "phoneNumber",
-									"value": "<string>"
+									"value": "servererror"
 								}
 							]
 						}
@@ -251,7 +245,7 @@
 		{
 			"listen": "prerequest",
 			"script": {
-				"id": "9455889f-b12c-4624-9c7f-01ef63ccbe0c",
+				"id": "f3265389-be7a-4bcd-ac5e-bb8b817f502e",
 				"type": "text/javascript",
 				"exec": [
 					""
@@ -261,7 +255,7 @@
 		{
 			"listen": "test",
 			"script": {
-				"id": "3c174bc9-78c9-4f56-a4c8-45a60b8ec5f6",
+				"id": "3debd584-538d-4d4b-aa3e-f121953248e0",
 				"type": "text/javascript",
 				"exec": [
 					"pm.test(\"Status code is 200\", function () {",

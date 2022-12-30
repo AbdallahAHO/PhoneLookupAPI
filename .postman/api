@@ -5,7 +5,7 @@ id = 0e332e03-f253-42e3-81cd-fbf3ceb7e613
 
 [relations.collections]
 rootDirectory = postman/collections
-files[] = {"id":"23721944-1296635f-931e-4bf8-a917-c5add29ad8f8","path":"Phone Lookup API.json","metaData":{}}
+files[] = {"id":"23721944-b9c54fdf-bfe4-4ed0-83f8-56c5f89e0d77","path":"Phone Lookup API.json","metaData":{}}
 
 [relations.collections.metaData]
 
