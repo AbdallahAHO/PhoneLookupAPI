@@ -1,10 +1,10 @@
 {
 	"info": {
-		"_postman_id": "9734d2d9-442a-42dc-947a-5a6173e017cc",
+		"_postman_id": "1296635f-931e-4bf8-a917-c5add29ad8f8",
 		"name": "Phone Lookup API",
 		"description": "A simple API for looking up information about phone numbers.\n\nContact Support:\n Name: API Support\n Email: support@example.com",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_uid": "23721944-9734d2d9-442a-42dc-947a-5a6173e017cc"
+		"_uid": "23721944-1296635f-931e-4bf8-a917-c5add29ad8f8"
 	},
 	"item": [
 		{
@@ -13,7 +13,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "16dea5ab-1ad0-4fc1-af1f-522ed7670386",
+						"id": "8b28dbd3-6741-4547-bdff-15ea9bd48ece",
 						"exec": [
 							""
 						],
@@ -21,7 +21,7 @@
 					}
 				}
 			],
-			"id": "fdc8560b-1559-41d4-abc3-83d4ef101fc6",
+			"id": "f719041f-5e84-4a6d-b19e-3a5e35803c47",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
 			},
@@ -54,7 +54,7 @@
 			},
 			"response": [
 				{
-					"id": "a5b87f2b-7c98-49d1-a494-68b767197b3f",
+					"id": "9ee8f04c-929e-403c-825a-d7c6dd9d183e",
 					"name": "200 - The phone number is valid",
 					"originalRequest": {
 						"method": "GET",
@@ -66,9 +66,12 @@
 							}
 						],
 						"url": {
-							"raw": "{{baseUrl}}/phone-number/lookup?phoneNumber=4917635767006",
+							"raw": "https://numcheck.aaho.cc/phone-number/lookup?phoneNumber=4917635767006",
+							"protocol": "https",
 							"host": [
-								"{{baseUrl}}"
+								"numcheck",
+								"aaho",
+								"cc"
 							],
 							"path": [
 								"phone-number",
@@ -95,7 +98,7 @@
 					"body": "{\n    \"number\": \"17635767006\",\n    \"is_valid_number\": true,\n    \"local_format\": \"0176 35767006\",\n    \"international_format\": \"+49 176 35767006\",\n    \"country_name\": \"Germany\",\n    \"country_code\": \"DE\",\n    \"country_prefix\": \"49\"\n}"
 				},
 				{
-					"id": "31786ec4-0513-45f9-b882-3e8a40ef75ca",
+					"id": "50d72fa8-abfc-4e87-b95a-5f4c0a073949",
 					"name": "400 - The phone number is invalid",
 					"originalRequest": {
 						"method": "GET",
@@ -107,9 +110,12 @@
 							}
 						],
 						"url": {
-							"raw": "{{baseUrl}}/phone-number/lookup?phoneNumber=<string>",
+							"raw": "https://numcheck.aaho.cc/phone-number/lookup?phoneNumber=<string>",
+							"protocol": "https",
 							"host": [
-								"{{baseUrl}}"
+								"numcheck",
+								"aaho",
+								"cc"
 							],
 							"path": [
 								"phone-number",
@@ -136,7 +142,7 @@
 					"body": "{\n    \"error\": \"The phone number is invalid\"\n}"
 				},
 				{
-					"id": "668f9d70-b146-4d1f-92d4-92d37d165d8c",
+					"id": "e1f006e5-5586-46c6-80c9-ea04da5791bd",
 					"name": "429 - Too Many Requests",
 					"originalRequest": {
 						"method": "GET",
@@ -148,9 +154,12 @@
 							}
 						],
 						"url": {
-							"raw": "{{baseUrl}}/phone-number/lookup?phoneNumber=<string>",
+							"raw": "https://numcheck.aaho.cc/phone-number/lookup?phoneNumber=<string>",
+							"protocol": "https",
 							"host": [
-								"{{baseUrl}}"
+								"numcheck",
+								"aaho",
+								"cc"
 							],
 							"path": [
 								"phone-number",
@@ -177,7 +186,7 @@
 					"body": "{\n    \"error\": \"Too many requests, please try again later\"\n}"
 				},
 				{
-					"id": "495f717d-5cd0-4b71-95e2-d2fed908253e",
+					"id": "66b1f6b6-fbe9-432a-b49f-34421afa4659",
 					"name": "500 - Internal server error",
 					"originalRequest": {
 						"method": "GET",
@@ -189,9 +198,12 @@
 							}
 						],
 						"url": {
-							"raw": "{{baseUrl}}/phone-number/lookup?phoneNumber=<string>",
+							"raw": "https://numcheck.aaho.cc/phone-number/lookup?phoneNumber=<string>",
+							"protocol": "https",
 							"host": [
-								"{{baseUrl}}"
+								"numcheck",
+								"aaho",
+								"cc"
 							],
 							"path": [
 								"phone-number",
@@ -215,7 +227,7 @@
 						}
 					],
 					"cookie": [],
-					"body": "{\n  \"error\": \"<string>\"\n}"
+					"body": "{\n  \"error\": \"Something Wrong happened, Please try again\"\n}"
 				}
 			]
 		}
@@ -239,7 +251,7 @@
 		{
 			"listen": "prerequest",
 			"script": {
-				"id": "752f0cfb-0f0f-424f-8ecc-b153e67928d7",
+				"id": "9455889f-b12c-4624-9c7f-01ef63ccbe0c",
 				"type": "text/javascript",
 				"exec": [
 					""
@@ -249,7 +261,7 @@
 		{
 			"listen": "test",
 			"script": {
-				"id": "51caef92-2864-4d46-8a78-a87320dd5ead",
+				"id": "3c174bc9-78c9-4f56-a4c8-45a60b8ec5f6",
 				"type": "text/javascript",
 				"exec": [
 					"pm.test(\"Status code is 200\", function () {",
@@ -270,13 +282,7 @@
 					"    pm.expect(jsonData.country_name).to.equal(\"Germany\");",
 					"    pm.expect(jsonData.country_code).to.equal(\"DE\");",
 					"    pm.expect(jsonData.country_prefix).to.equal(\"49\");",
-					"});",
-					"",
-					"pm.test('API responds under 500ms', () => {",
-					"    const responseTime = pm.response.responseTime;",
-					"    pm.expect(responseTime).to.be.below(500);",
-					"});",
-					""
+					"});"
 				]
 			}
 		}
