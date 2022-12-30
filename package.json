@@ -5,7 +5,8 @@
     "main": "server.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "scripts": {
-        "start": "pm2 start server.js --attach"
+        "start": "pm2 start server.js --attach",
+        "dev": "node server.js --watch"
     },
     "dependencies": {
         "cookie-parser": "1.4.5",

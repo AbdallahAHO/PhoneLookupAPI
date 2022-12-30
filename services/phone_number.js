@@ -16,12 +16,15 @@ function validatePhoneNumber(phoneNumber) {
       throw new Error('<Error message>');
     }
 
+    let regionNames = new Intl.DisplayNames(['en'], {type: 'region'});
+
+
     result = {
       number: getNationalNumber.toString(),
       is_valid_number: isValidNumber,
       local_format: phoneUtil.format(parsedNumber, PhoneNumberFormat.NATIONAL),
       international_format: phoneUtil.format(parsedNumber, PhoneNumberFormat.INTERNATIONAL),
-      country_name:  regionCode,
+      country_name:  regionNames.of(regionCode),
       country_code: regionCode,
       country_prefix: phoneUtil.getCountryCodeForRegion(regionCode).toString(),
     };
@@ -41,7 +44,16 @@ module.exports = {
   * @param {string} options.phoneNumber - phone number to lookup
   */
   getLookup: async (options) => {
-    if (!options.phoneNumber) {
+    const checkIfPhoneNumberIsValid = (phoneNumber) => {
+      try {
+        const parsedNumber = phoneUtil.parse(`+${phoneNumber}`);
+        return phoneUtil.isValidNumber(parsedNumber);
+      } catch (error) {
+        return false;
+      }
+    };
+
+    if (!checkIfPhoneNumberIsValid(options.phoneNumber)) {
       return {
         status: '400',
         data: {
