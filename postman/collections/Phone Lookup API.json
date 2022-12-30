@@ -1,0 +1,284 @@
+{
+	"info": {
+		"_postman_id": "9734d2d9-442a-42dc-947a-5a6173e017cc",
+		"name": "Phone Lookup API",
+		"description": "A simple API for looking up information about phone numbers.\n\nContact Support:\n Name: API Support\n Email: support@example.com",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_uid": "23721944-9734d2d9-442a-42dc-947a-5a6173e017cc"
+	},
+	"item": [
+		{
+			"name": "Look up phone number information",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "16dea5ab-1ad0-4fc1-af1f-522ed7670386",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"id": "fdc8560b-1559-41d4-abc3-83d4ef101fc6",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "{{baseUrl}}/v1/phone-number/lookup?phoneNumber=+4917635767006",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"v1",
+						"phone-number",
+						"lookup"
+					],
+					"query": [
+						{
+							"key": "phoneNumber",
+							"value": "+4917635767006",
+							"description": "(Required) "
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"id": "a5b87f2b-7c98-49d1-a494-68b767197b3f",
+					"name": "200 - The phone number is valid",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"description": "Added as a part of security scheme: basic",
+								"key": "Authorization",
+								"value": "Basic <credentials>"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/phone-number/lookup?phoneNumber=4917635767006",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"phone-number",
+								"lookup"
+							],
+							"query": [
+								{
+									"key": "phoneNumber",
+									"value": "4917635767006"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"number\": \"17635767006\",\n    \"is_valid_number\": true,\n    \"local_format\": \"0176 35767006\",\n    \"international_format\": \"+49 176 35767006\",\n    \"country_name\": \"Germany\",\n    \"country_code\": \"DE\",\n    \"country_prefix\": \"49\"\n}"
+				},
+				{
+					"id": "31786ec4-0513-45f9-b882-3e8a40ef75ca",
+					"name": "400 - The phone number is invalid",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"description": "Added as a part of security scheme: basic",
+								"key": "Authorization",
+								"value": "Basic <credentials>"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/phone-number/lookup?phoneNumber=<string>",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"phone-number",
+								"lookup"
+							],
+							"query": [
+								{
+									"key": "phoneNumber",
+									"value": "<string>"
+								}
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"error\": \"The phone number is invalid\"\n}"
+				},
+				{
+					"id": "668f9d70-b146-4d1f-92d4-92d37d165d8c",
+					"name": "429 - Too Many Requests",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"description": "Added as a part of security scheme: basic",
+								"key": "Authorization",
+								"value": "Basic <credentials>"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/phone-number/lookup?phoneNumber=<string>",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"phone-number",
+								"lookup"
+							],
+							"query": [
+								{
+									"key": "phoneNumber",
+									"value": "<string>"
+								}
+							]
+						}
+					},
+					"status": "Too Many Requests",
+					"code": 429,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"error\": \"Too many requests, please try again later\"\n}"
+				},
+				{
+					"id": "495f717d-5cd0-4b71-95e2-d2fed908253e",
+					"name": "500 - Internal server error",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"description": "Added as a part of security scheme: basic",
+								"key": "Authorization",
+								"value": "Basic <credentials>"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/phone-number/lookup?phoneNumber=<string>",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"phone-number",
+								"lookup"
+							],
+							"query": [
+								{
+									"key": "phoneNumber",
+									"value": "<string>"
+								}
+							]
+						}
+					},
+					"status": "Internal Server Error",
+					"code": 500,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\n  \"error\": \"<string>\"\n}"
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "basic",
+		"basic": [
+			{
+				"key": "password",
+				"value": "{{basicAuthPassword}}",
+				"type": "string"
+			},
+			{
+				"key": "username",
+				"value": "{{basicAuthUsername}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "47367cbc-e0f6-491c-b2cc-cce865e4d81d",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "c561f0ab-fbdc-4f75-b60b-0865521abec1",
+				"type": "text/javascript",
+				"exec": [
+					"pm.test(\"Status code is 200\", function () {",
+					"    pm.response.to.have.status(200);",
+					"});",
+					"",
+					"pm.test(\"Check response structure and values\", function () {",
+					"    var jsonData = pm.response.json();",
+					"",
+					"    // Check that the response has all the expected properties",
+					"    pm.expect(jsonData).to.have.all.keys([\"number\", \"is_valid_number\", \"local_format\", \"international_format\", \"country_name\", \"country_code\", \"country_prefix\"]);",
+					"",
+					"    // Check the values of the properties",
+					"    pm.expect(jsonData.number).to.equal(\"17635767006\");",
+					"    pm.expect(jsonData.is_valid_number).to.be.true;",
+					"    pm.expect(jsonData.local_format).to.equal(\"0176 35767006\");",
+					"    pm.expect(jsonData.international_format).to.equal(\"+49 176 35767006\");",
+					"    pm.expect(jsonData.country_name).to.equal(\"Germany\");",
+					"    pm.expect(jsonData.country_code).to.equal(\"DE\");",
+					"    pm.expect(jsonData.country_prefix).to.equal(\"49\");",
+					"});",
+					"",
+					"pm.test('API responds under 100ms', () => {",
+					"    const responseTime = pm.response.responseTime;",
+					"    pm.expect(responseTime).to.be.below(100);",
+					"});",
+					""
+				]
+			}
+		}
+	]
+}

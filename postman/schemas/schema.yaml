@@ -7,10 +7,12 @@ info:
         name: API Support
         email: support@example.com
 servers:
-    - url: https://api.example.com/v1
-    - url: http://localhost:3000
+    -   url: http://localhost:3000
+        description: Development server
+    -   url: https://numcheck.aaho.cc
+        description: Development server
 paths:
-    /phone-number/lookup:
+    /v1/phone-number/lookup:
         get:
             summary: Look up information about a phone number
             parameters:
@@ -21,34 +23,34 @@ paths:
                       $ref: "#/components/schemas/QueryParam"
             responses:
                 200:
-                    description: The phone number is valid.
+                    description: 200 - The phone number is valid.
                     content:
                         application/json:
                             schema:
                                 $ref: "#/components/schemas/PhoneNumber"
                 400:
-                    description: The phone number is invalid.
+                    description: 400 - The phone number is invalid.
                     content:
                         application/json:
                             schema:
                                 $ref: "#/components/schemas/ValidationError"
                 429:
-                    description: Too Many Requests
+                    description: 429 - Too Many Requests
                     content:
                         application/json:
                             schema:
                                 $ref: "#/components/schemas/TooManyRequests"
                 500:
-                    description: Internal server error.
+                    description: 500 - Internal server error.
                     content:
                         application/json:
                             schema:
                                 $ref: "#/components/schemas/ServerError"
 x-rate-limit:
     limit: 10
-    window: 60
+    window: 20
 security:
-        - BasicAuth : [] 
+    - BasicAuth: []
 components:
     securitySchemes:
         BasicAuth:
@@ -110,4 +112,3 @@ components:
                     type: string
                     description: The error message on hitting a rate limit
                     example: Too many requests, please try again later
-

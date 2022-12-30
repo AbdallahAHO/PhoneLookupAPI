@@ -5,13 +5,14 @@ id = 0e332e03-f253-42e3-81cd-fbf3ceb7e613
 
 [relations.collections]
 rootDirectory = postman/collections
+files[] = {"id":"23721944-9734d2d9-442a-42dc-947a-5a6173e017cc","path":"Phone Lookup API.json","metaData":{}}
 
 [relations.collections.metaData]
 
 [relations.apiDefinition]
 rootDirectory = postman/schemas
-files[] = {"path":"index.yaml","metaData":{}}
+files[] = {"path":"schema.yaml","metaData":{}}
 
 [relations.apiDefinition.metaData]
 type = openapi:3
-rootFiles[] = index.yaml
+rootFiles[] = schema.yaml
