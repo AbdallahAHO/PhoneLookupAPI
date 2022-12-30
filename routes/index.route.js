@@ -4,7 +4,8 @@ const path = require("path");
 
 const router = new express.Router();
 
-const baseURL = process.env.BASE_API_URL || 'http://localhost:3000';
+const baseURL = process.env.BASE_API_URL;
+console.log("baseURL", baseURL)
 
 router.get("/", (req, res) => {
   res.render(path.join(__dirname, "../client", "index.ejs"), {baseURL})
