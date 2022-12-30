@@ -53,7 +53,7 @@
           >Phone Number Lookup</a
         >
         <button
-          class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full"
+          class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full umami--click--open-postman-docs"
           onclick="window.open('https://documenter.getpostman.com/view/10724784/T1LFkxKL?version=latest')"
         >
           Open Postman Documentation
@@ -71,6 +71,8 @@
 
     <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js"></script>
 
+    <script async defer data-website-id="70b0b489-6eff-4a86-853c-e322cd8b222f" src="https://analytics.abdallah.work/bosbosbos.js"></script>
+
     <script>
       const baseURL = "<%= baseURL %>";
 
@@ -87,6 +89,8 @@
       });
 
       const debouncedLookupPhoneNumber = _.debounce((phoneNumber) => {
+        umami.trackEvent('Phone lookup', { type: 'signup', phoneNumber: phoneNumber }, '/home', '94db1cb1-74f4-4a40-ad6c-962362670409');
+
         const xhr = new XMLHttpRequest();
         xhr.open(
           "GET",
