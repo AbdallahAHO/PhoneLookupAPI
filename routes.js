@@ -2,6 +2,6 @@ module.exports = function (app) {
   /*
   * Routes
   */
-  app.use('/phone-number', require('./routes/phone_number.route'));
+  app.use('/v1/phone-number', require('./routes/phone_number.route'));
 
 };
