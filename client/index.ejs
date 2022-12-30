@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link
+      href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+      }
+      .container {
+        max-width: 800px;
+        margin: 0 auto;
+      }
+      .dark-theme {
+        background-color: #222;
+        color: #eee;
+      }
+      .dark-theme .response,
+      .dark-theme .error {
+        border: 1px solid #434343;
+        border-radius: 9px;
+        margin-top: 30px;
+      }
+      .response {
+        padding: 1rem;
+        margin-top: 1rem;
+      }
+      .error {
+        padding: 1rem;
+        margin-top: 1rem;
+        color: red;
+      }
+      .monospace {
+        font-family: monospace;
+        font-weight: 600;
+        margin-right: 4px;
+        margin-left: 4px;
+        color: darkgrey;
+        white-space: nowrap;
+      }
+    </style>
+  </head>
+  <body class="dark-theme font-sans bg-gray-800">
+    <div class="container p-4">
+      <div class="flex items-center mb-4 justify-between">
+        <a
+          href="<%= baseURL %>"
+          class="text-3xl font-bold text-white no-underline mr-2"
+          >Phone Number Lookup</a
+        >
+        <button
+          class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full"
+          onclick="window.open('https://documenter.getpostman.com/view/10724784/T1LFkxKL?version=latest')"
+        >
+          Open Postman Documentation
+        </button>
+      </div>
+      <input
+        id="phoneNumber"
+        type="text"
+        placeholder="Enter a phone number"
+        class="form-input w-full mt-2  rounded-md bg-gray-800 py-5 px-10 text-white italic font-mono h-16 text-lg"
+      />
+      <div id="response" class="response mt-4 text-2xl"></div>
+      <div id="error" class="error mt-4"></div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js"></script>
+
+    <script>
+      const baseURL = "<%= baseURL %>";
+
+      const phoneNumberInput = document.getElementById("phoneNumber");
+      const responseDiv = document.getElementById("response");
+      const errorDiv = document.getElementById("error");
+
+      errorDiv.style.display = "none";
+      responseDiv.style.display = "none";
+
+      phoneNumberInput.addEventListener("input", (event) => {
+        const phoneNumber = event.target.value;
+        debouncedLookupPhoneNumber(phoneNumber);
+      });
+
+      const debouncedLookupPhoneNumber = _.debounce((phoneNumber) => {
+        const xhr = new XMLHttpRequest();
+        xhr.open(
+          "GET",
+          `${baseURL}/v1/phone-number/lookup?phoneNumber=${phoneNumber}`
+        );
+        xhr.setRequestHeader(
+          "Authorization",
+          "Basic " + btoa("username:password")
+        );
+        xhr.onload = () => {
+          if (xhr.status === 200) {
+            responseDiv.style.display = "block";
+            responseDiv.innerHTML = "";
+            const phoneNumberInfo = JSON.parse(xhr.responseText);
+            responseDiv.innerHTML = `The phone number <span class="monospace">${phoneNumberInfo.number}</span> is registered in <span class="monospace">${phoneNumberInfo.country_name}</span> (<span class="monospace">${phoneNumberInfo.country_code}</span>). </br> It is formatted as <span class="monospace">${phoneNumberInfo.local_format}</span> in the local format and as <a class="monospace" href="tel:${phoneNumberInfo.international_format}">${phoneNumberInfo.international_format}</a> in the international format. The country prefix is <span class="monospace">${phoneNumberInfo.country_prefix}</span>.`;
+            errorDiv.innerHTML = "";
+            errorDiv.style.display = "none";
+          } else {
+            errorDiv.style.display = "block";
+            const error = JSON.parse(xhr.responseText).error;
+            errorDiv.innerHTML = error;
+            responseDiv.innerHTML = "";
+            responseDiv.style.display = "none";
+          }
+        };
+        xhr.send();
+      }, 500);
+    </script>
+  </body>
+</html>
