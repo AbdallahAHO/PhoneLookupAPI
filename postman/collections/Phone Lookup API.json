@@ -239,7 +239,7 @@
 		{
 			"listen": "prerequest",
 			"script": {
-				"id": "02522ae8-81ec-439e-8b98-9270b42844ed",
+				"id": "752f0cfb-0f0f-424f-8ecc-b153e67928d7",
 				"type": "text/javascript",
 				"exec": [
 					""
@@ -249,7 +249,7 @@
 		{
 			"listen": "test",
 			"script": {
-				"id": "a4c5f811-e246-4d82-834f-5ae71e638900",
+				"id": "51caef92-2864-4d46-8a78-a87320dd5ead",
 				"type": "text/javascript",
 				"exec": [
 					"pm.test(\"Status code is 200\", function () {",
@@ -272,9 +272,9 @@
 					"    pm.expect(jsonData.country_prefix).to.equal(\"49\");",
 					"});",
 					"",
-					"pm.test('API responds under 250ms', () => {",
+					"pm.test('API responds under 500ms', () => {",
 					"    const responseTime = pm.response.responseTime;",
-					"    pm.expect(responseTime).to.be.below(250);",
+					"    pm.expect(responseTime).to.be.below(500);",
 					"});",
 					""
 				]
